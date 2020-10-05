@@ -19,6 +19,7 @@ namespace ComidasRapitas.Tests
             var resultado = comprar.Registrar(ProductoSimple);
             Assert.Pass("Registrado Correctamente",resultado);
         }
+        [Test]
         public void NoPuedoRegistrarProductoRepetido()
         {
             var ProductoSimple = new ProductoSimple(100, "Salchicha", 1000, 2000);
