@@ -17,7 +17,13 @@ namespace ComidasRapidas
         
         public string Registrar(ProductoSimple producto)
         {
-            
+            foreach (var item in productoSimples)
+            {
+                if (producto.Nombre.Equals(item.Nombre))
+                {
+                    return $"El Producto {item.Nombre} ya se ha registrado anteriormente";
+                }
+            }
             productoSimples.Add(producto);
         
             return "Registrado Correctamente";
