@@ -8,8 +8,8 @@ namespace ComidasRapidas
 {
     public abstract class Producto
     {
-        
 
+        public int Codigo { get; set; }
         public int SKU { get; set; }
         public string Nombre { get; set; }
         public decimal Costo { get; set; }

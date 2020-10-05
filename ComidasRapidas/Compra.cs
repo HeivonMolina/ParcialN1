@@ -19,7 +19,7 @@ namespace ComidasRapidas
         {
             foreach (var item in productosSimples)
             {
-                if (producto.Nombre.Equals(item.Nombre))
+                if (producto.Codigo == item.Codigo)
                 {
                     return $"El Producto {item.Nombre} ya se ha registrado anteriormente";
                 }
@@ -28,15 +28,19 @@ namespace ComidasRapidas
         
             return "Registrado Correctamente";
         }
-        public string RegistrarEntrada(string nombre, int cantidad)
+        public string RegistrarEntrada(int codigo, int cantidad)
         {
+            if (cantidad<=0)
+            {
+                return "La cantidad debe ser mayor a 0";
+            }
             foreach (var item in productosSimples)
             {
-                if (item.Nombre.Equals(nombre))
+                if (item.Codigo==codigo)
                 {
                     int SKUSumado = item.SKU + cantidad;
                     //Tal vez deba corregir :v
-                    ProductoSimple producto = new ProductoSimple(SKUSumado,item.Nombre,item.Costo,item.Precio);
+                    ProductoSimple producto = new ProductoSimple(codigo,SKUSumado, item.Nombre,item.Costo,item.Precio);
                     productosSimples.Remove(item);
                     productosSimples.Add(producto);
                     return "Se añadio Correctamente";

@@ -8,8 +8,9 @@ namespace ComidasRapidas
 {
     public class ProductoSimple: Producto
     {
-        public ProductoSimple(int sku, string nombre, decimal costo, decimal precio)
+        public ProductoSimple(int codigo,int sku, string nombre, decimal costo, decimal precio)
         {
+            Codigo = codigo;
             SKU = sku;
             Nombre = nombre;
             Costo = costo;
