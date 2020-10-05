@@ -1,0 +1,6 @@
+C:\Users\Molina\Documents\DISEÑO DIRIGIDO X PRUEBAS\Parcias1er Corte\ComidasRapidas\ComidasRapidas\bin\Debug\ComidasRapidas.dll
+C:\Users\Molina\Documents\DISEÑO DIRIGIDO X PRUEBAS\Parcias1er Corte\ComidasRapidas\ComidasRapidas\bin\Debug\ComidasRapidas.pdb
+C:\Users\Molina\Documents\DISEÑO DIRIGIDO X PRUEBAS\Parcias1er Corte\ComidasRapidas\ComidasRapidas\obj\Debug\ComidasRapidas.csprojAssemblyReference.cache
+C:\Users\Molina\Documents\DISEÑO DIRIGIDO X PRUEBAS\Parcias1er Corte\ComidasRapidas\ComidasRapidas\obj\Debug\ComidasRapidas.csproj.CoreCompileInputs.cache
+C:\Users\Molina\Documents\DISEÑO DIRIGIDO X PRUEBAS\Parcias1er Corte\ComidasRapidas\ComidasRapidas\obj\Debug\ComidasRapidas.dll
+C:\Users\Molina\Documents\DISEÑO DIRIGIDO X PRUEBAS\Parcias1er Corte\ComidasRapidas\ComidasRapidas\obj\Debug\ComidasRapidas.pdb
