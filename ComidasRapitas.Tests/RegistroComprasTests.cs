@@ -12,7 +12,7 @@ namespace ComidasRapitas.Tests
 
         
         [Test]
-        public void PuedoRegistrarProductosSimples()
+        public void PuedoRegistrarProductosSimplesTest()
         {
             var ProductoSimple = new ProductoSimple(100,"Salchicha",1000,2000);
             var comprar = new Compra();
@@ -20,15 +20,25 @@ namespace ComidasRapitas.Tests
             Assert.Pass("Registrado Correctamente",resultado);
         }
         [Test]
-        public void NoPuedoRegistrarProductoRepetido()
+        public void NoPuedoRegistrarProductoRepetidoTest()
         {
             var ProductoSimple = new ProductoSimple(100, "Salchicha", 1000, 2000);
             var comprar = new Compra();
             comprar.Registrar(ProductoSimple);
             var ProductoSimple2 = new ProductoSimple(10, "Salchicha", 1000, 2000);
             var resultado = comprar.Registrar(ProductoSimple2);
-
             Assert.Pass("El Producto Salchicha ya se ha registrado anteriormente", resultado);
         }
+
+        public void PuedoRegistarEntradasDeProductoTest()
+        {
+            var ProductoSimple = new ProductoSimple(100, "Salchicha", 1000, 2000);
+            var comprar = new Compra();
+            comprar.Registrar(ProductoSimple);
+            
+            var resultado = comprar.RegistrarEntrada("Salchicha",20);
+            Assert.Pass("Se añadio Correctamente", resultado);
+        }
+
     }
 }
