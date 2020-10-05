@@ -29,7 +29,7 @@ namespace ComidasRapitas.Tests
             var resultado = comprar.Registrar(ProductoSimple2);
             Assert.Pass("El Producto Salchicha ya se ha registrado anteriormente", resultado);
         }
-
+        [Test]
         public void PuedoRegistarEntradasDeProductoTest()
         {
             var ProductoSimple = new ProductoSimple(100, "Salchicha", 1000, 2000);
