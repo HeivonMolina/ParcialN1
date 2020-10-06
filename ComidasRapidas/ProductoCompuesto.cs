@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace ComidasRapidas
 {
-    public class ProductoCompuesto: Producto
+    public class ProductoCompuesto
     {
+        public string Nombre { get; set; }
         public List<ProductoSimple> ProductosSimples { get; set; }
-        public List<ProductoCompuesto> ProductosCompuestos { get; set; }
+        public int Cantidad { get; set; }
     }
 }

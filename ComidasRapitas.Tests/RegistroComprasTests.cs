@@ -17,7 +17,7 @@ namespace ComidasRapitas.Tests
             var ProductoSimple = new ProductoSimple(111,100,"Salchicha",1000,2000);
             var comprar = new Compra();
             var resultado = comprar.Registrar(ProductoSimple);
-            Assert.Pass("Registrado Correctamente",resultado);
+            Assert.AreEqual("Registrado Correctamente",resultado);
         }
         [Test]
         public void NoPuedoRegistrarProductoRepetidoTest()
@@ -27,7 +27,7 @@ namespace ComidasRapitas.Tests
             comprar.Registrar(ProductoSimple);
             var ProductoSimple2 = new ProductoSimple(111, 10, "Salchicha", 1000, 2000);
             var resultado = comprar.Registrar(ProductoSimple2);
-            Assert.Pass("El Producto Salchicha ya se ha registrado anteriormente", resultado);
+            Assert.AreEqual("El Producto Salchicha ya se ha registrado anteriormente", resultado);
         }
         [Test]
         public void PuedoRegistarEntradasDeProductoTest()
@@ -37,7 +37,7 @@ namespace ComidasRapitas.Tests
             comprar.Registrar(ProductoSimple);
             
             var resultado = comprar.RegistrarEntrada(111,20);
-            Assert.Pass("Se añadio Correctamente", resultado);
+            Assert.AreEqual("Se ha registrado una entrada para el Producto Salchicha correctamente", resultado);
         }
         [Test]
         public void NoPuedoRegistrarEntradaConCantidad0Test()
@@ -46,8 +46,18 @@ namespace ComidasRapitas.Tests
             var comprar = new Compra();
             comprar.Registrar(ProductoSimple);
 
-            var resultado = comprar.RegistrarEntrada(111, 20);
-            Assert.Pass("Se añadio Correctamente", resultado);
+            var resultado = comprar.RegistrarEntrada(111, 0);
+            Assert.AreEqual("La cantidad debe ser mayor a 0", resultado);
+        }
+        [Test]
+        public void NoPuedoRegistrarEntradaDeProductosNoExistenteTest()
+        {
+            var ProductoSimple = new ProductoSimple(111, 100, "Salchicha", 1000, 2000);
+            var comprar = new Compra();
+            comprar.Registrar(ProductoSimple);
+
+            var resultado = comprar.RegistrarEntrada(112, 10);
+            Assert.AreEqual("No existe el producto", resultado);
         }
 
     }

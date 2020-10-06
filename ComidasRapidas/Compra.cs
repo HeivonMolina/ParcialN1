@@ -9,22 +9,22 @@ namespace ComidasRapidas
     public class Compra
     {
         public int NumeroCompra { get; set; }
-        List<ProductoSimple> productosSimples;
+        
         public Compra()
         {
-            productosSimples = new List<ProductoSimple>();
+            
         }
         
         public string Registrar(ProductoSimple producto)
         {
-            foreach (var item in productosSimples)
+            foreach (var item in ListaProductos.ProductoSimples)
             {
                 if (producto.Codigo == item.Codigo)
                 {
                     return $"El Producto {item.Nombre} ya se ha registrado anteriormente";
                 }
             }
-            productosSimples.Add(producto);
+            ListaProductos.ProductoSimples.Add(producto);
         
             return "Registrado Correctamente";
         }
@@ -34,16 +34,16 @@ namespace ComidasRapidas
             {
                 return "La cantidad debe ser mayor a 0";
             }
-            foreach (var item in productosSimples)
+            foreach (var item in ListaProductos.ProductoSimples)
             {
                 if (item.Codigo==codigo)
                 {
                     int SKUSumado = item.SKU + cantidad;
                     //Tal vez deba corregir :v
                     ProductoSimple producto = new ProductoSimple(codigo,SKUSumado, item.Nombre,item.Costo,item.Precio);
-                    productosSimples.Remove(item);
-                    productosSimples.Add(producto);
-                    return "Se añadio Correctamente";
+                    ListaProductos.ProductoSimples.Remove(item);
+                    ListaProductos.ProductoSimples.Add(producto);
+                    return $"Se ha registrado una entrada para el Producto {item.Nombre} correctamente";
                 }
             }
             return "No existe el producto";
