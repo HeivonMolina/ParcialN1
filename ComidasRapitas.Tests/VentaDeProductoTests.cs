@@ -1,5 +1,6 @@
 using ComidasRapidas;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace ComidasRapitas.Tests
 {
@@ -51,10 +52,11 @@ namespace ComidasRapitas.Tests
             var resultado = venta.VenderProductoSimple(101, 90);
             Assert.AreEqual("No existe producto", resultado);
         }
+        [Test]
         public void PuedoVenderProductoCompuestoTest()
         {
             var ProductoSimple = new ProductoSimple(111, 100, "Salchicha", 1000, 2000);
-            var ProductoSimple2 = new ProductoSimple(114, 100, "Papas ripio", 10000, 15000);
+            var ProductoSimple2 = new ProductoSimple(114, 100, "Papas ripio", 1000, 1500);
             var ProductoSimple3 = new ProductoSimple(111, 100, "Pan para perro", 1000, 2000);
             var ProductoSimple4 = new ProductoSimple(116, 100, "Queso", 2000, 3000);
             var comprar = new Compra();
@@ -62,9 +64,35 @@ namespace ComidasRapitas.Tests
             comprar.Registrar(ProductoSimple2);
             comprar.Registrar(ProductoSimple3);
             comprar.Registrar(ProductoSimple4);
+            List<ProductoSimple> listaIngredientes = new List<ProductoSimple>();
+            listaIngredientes.Add(ProductoSimple);
+            listaIngredientes.Add(ProductoSimple2);
+            listaIngredientes.Add(ProductoSimple3);
+            listaIngredientes.Add(ProductoSimple4);
             var venta = new Venta();
-            var resultado = venta.VenderProductoCompuesto(509, 4);
-            Assert.AreEqual("No existe producto", resultado);
+            var resultado = venta.VenderProductoCompuesto("Perro Caliente", listaIngredientes, 4);
+            Assert.AreEqual("Se vendio con exito el costo de Perro Caliente es de : $34000", resultado);
+        }
+        [Test]
+        public void NoPuedoVenderProductoCompuestoCOnCantidad0Test()
+        {
+            var ProductoSimple = new ProductoSimple(111, 100, "Salchicha", 1000, 2000);
+            var ProductoSimple2 = new ProductoSimple(114, 100, "Papas ripio", 1000, 1500);
+            var ProductoSimple3 = new ProductoSimple(111, 100, "Pan para perro", 1000, 2000);
+            var ProductoSimple4 = new ProductoSimple(116, 100, "Queso", 2000, 3000);
+            var comprar = new Compra();
+            comprar.Registrar(ProductoSimple);
+            comprar.Registrar(ProductoSimple2);
+            comprar.Registrar(ProductoSimple3);
+            comprar.Registrar(ProductoSimple4);
+            List<ProductoSimple> listaIngredientes = new List<ProductoSimple>();
+            listaIngredientes.Add(ProductoSimple);
+            listaIngredientes.Add(ProductoSimple2);
+            listaIngredientes.Add(ProductoSimple3);
+            listaIngredientes.Add(ProductoSimple4);
+            var venta = new Venta();
+            var resultado = venta.VenderProductoCompuesto("Perro Caliente", listaIngredientes, 0);
+            Assert.AreEqual("La cantidad debe ser mayor a 0", resultado);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -42,10 +43,44 @@ namespace ComidasRapidas
             }
             return "No existe producto";
         }
-        public string VenderProductoCompuesto(int codigo, int cantidad)
+        public string VenderProductoCompuesto(string nombre,List<ProductoSimple> productos, int cantidad)
         {
+            decimal costos=0m, precios=0m;
+            if (cantidad<=0)
+            {
+                return "La cantidad debe ser mayor a 0";
+            }
+            foreach (var producto in productos)
+            {
+                ProductoSimple simple = new ProductoSimple();
+                bool entontro = false;
+               
+                foreach (var item in ListaProductos.ProductoSimples)
+                {
+                    
+                    if (producto.Codigo==item.Codigo)
+                    {
+                        simple = item;
+                        entontro = true;
+                    }
+                }
 
-            return "";
+                if (entontro) {
+                    simple.SKU = simple.SKU - cantidad;
+                    ProductoSimple productoDescontar = new ProductoSimple(simple.Codigo, simple.SKU, simple.Nombre, simple.Costo, simple.Precio);
+                    ListaProductos.ProductoSimples.Remove(simple);
+                    ListaProductos.ProductoSimples.Add(producto);
+                    costos += simple.Costo;
+                    precios += simple.Precio;
+                }
+            }
+            ProductoCompuesto productoCompuesto = new ProductoCompuesto(nombre,productos,cantidad,costos,precios);
+            costos = costos * cantidad;
+            precios = precios * cantidad;
+            DetalleVenta detalleVenta = new DetalleVenta(cantidad, costos, precios, null, productoCompuesto);
+            detalleVentas.Add(detalleVenta);
+
+            return $"Se vendio con exito el costo de {nombre } es de : ${precios}";
         }
     }
 }
